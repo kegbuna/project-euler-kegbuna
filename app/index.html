@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PEuler by Ken Egbuna</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="styles/main.css">
+    <style type="text/css">
+      .promote-layer {
+      }
+    </style>
+  </head>
+  <body>
+    <header class="app-bar promote-layer">
+      <div class="app-bar-container">
+        <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
+        <h1 class="logo">Project Euler <strong>Ken Egbuna</strong></h1>
+        <section class="app-bar-actions">
+        <!-- Put App Bar Buttons Here -->
+        <!-- e.g <button><i class="icon icon-star"></i></button> -->
+        </section>
+      </div>
+    </header>
+
+    <nav class="navdrawer-container promote-layer">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#project-euler">Project Euler</a></li>
+        <li><a href="styleguide.html">Style Guide</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1 id="home">Welcome</h1>
+      <p>This is a site made using the Google Web Starter Kit.</p>
+      <p>I decided I needed to share something on the internet that was meaningful, so I grabbed the template and went to work.</p>
+      <p>My plan is to share my solutions to <a href="https://projecteuler.net">Project Euler</a> problems, starting with the most popular (solved) ones.</p>
+      <p>There won't likely be anything of value on here for a year, when I finally get to the ones other people find hard. (lol)</p>
+
+      <h2 id="project-euler">Project Euler</h2>
+      <p>Here is where we'll begin. <span class="todo">TODO::Add a js generated navigation bar above (below?) this text.</span></p>
+      <h3 id="problem-1" class="problem-title">Problem 1</h3>
+      <div class="problem">
+        <p class="problem-text">If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</p>
+        <p class="problem text">Find the sum of all the multiples of 3 or 5 below 1000.</p>
+      </div>
+      <h3>Solution 1</h3>
+      <p>It would be easy to just count up all the way to 1000, checking to see if each number is divisible by 3 or 5, and then adding that to the array to be added, right? That means traversing 1000 member dataset though, which is pretty wasteful. I'll try splitting it into 2, one for 3 and one for 5, but I'll need to check to make sure I don't add those numbers twice!</p>
+      <p>I was the 404169th person to solve this! <strong>Trend setting!</strong></p>
+      <code>
+        var counter = 0;
+        var finalSum = 0;
+        //First we'll add each iteration of 3 to the finalSum variable
+        do
+        {
+        finalSum += counter;
+        counter += 3;
+        } while (counter < 1000);
+        //next we'll do the same for 5, but we'll have to check if it's divisible by 3! otherwise we'll be adding them twice!
+        counter = 0;
+        do
+        {
+        if (counter % 3 != 0)
+        {
+        //only add it to the final sum if it is not divisible by both
+        finalSum += counter;
+        }
+
+        counter += 5;
+        } while (counter < 1000);
+
+        console.log("The answer to Problem 1 is " + finalSum);
+      </code>
+      <script type="text/javascript">
+        var counter = 0;
+        var finalSum = 0;
+        //First we'll add each iteration of 3 to the finalSum variable
+        do
+        {
+          finalSum += counter;
+          counter += 3;
+        } while (counter < 1000);
+        //next we'll do the same for 5, but we'll have to check if it's divisible by 3! otherwise we'll be adding them twice!
+        counter = 0;
+        do
+        {
+          if (counter % 3 != 0)
+          {
+            //only add it to the final sum if it is not divisible by both
+            finalSum += counter;
+          }
+
+          counter += 5;
+        } while (counter < 1000);
+
+        console.log("The answer to Problem 1 is " + finalSum);
+      </script>
+      <h3 id="problem-2" class="problem-title">Problem 2</h3>
+      <div class="problem">
+        <p class="problem-text">Each new term in the Fibonacci sequence is generated by adding the previous two terms. By starting with 1 and 2, the first 10 terms will be:</p>
+        <p class="problem-text">1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...</p>
+        <p class="problem-text">By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.</p>
+      </div>
+      <h3>Solution 2</h3>
+      <p>I wanted to limit this two variables, but couldn't figure that out for some reason. So I am using the newFib variable to hold onto the new value while I assign the current Fib number to lastFib for use in the next iteration.</p>
+      <p>I was the 333044th person to solve this! <strong>Killin' it!</strong></p>
+      <code>
+        //declare the first value
+        var fib=1;
+        var newFib = 1;
+        var lastFib = 1;
+        var finalSum = 0;
+        do
+        {
+        if (fib % 2 == 0)
+        {
+        finalSum+=fib;
+        }
+        //find the new fib number
+        newFib = fib + lastFib;
+        //store the current fib for use in the next round
+        lastFib = fib;
+        //assign the current fib for next round
+        fib = newFib;
+        } while (fib < 4000000);
+
+        console.log("The answer to Problem 2 is " + finalSum);
+      </code>
+      <script type="text/javascript">
+        //declare the first value
+        var fib=1;
+        var newFib = 1;
+        var lastFib = 1;
+        var finalSum = 0;
+        do
+        {
+          if (fib % 2 == 0)
+          {
+            finalSum+=fib;
+          }
+          //find the new fib number
+          newFib = fib + lastFib;
+          //store the current fib for use in the next round
+          lastFib = fib;
+          //assign the current fib for next round
+          fib = newFib;
+        } while (fib < 4000000);
+
+        console.log("The answer to Problem 2 is " + finalSum);
+      </script>
+      <h3 id="problem-3" class="problem-title">Problem 3</h3>
+      <div class="problem">
+        <p class="problem-text">The prime factors of 13195 are 5, 7, 13 and 29.</p>
+        <p class="problem-text">What is the largest prime factor of the number 600851475143?</p>
+      </div>
+      <h3>Solution 3</h3>
+      <p>I know this is likely not the most elegant solution, but it's mine :-). I start with an array of primes, starting with 2, and an empty array of prime factors. I try to divide the current number by my array of primes, and then add it to the prime factors array if it works. I don't know off the top of my head every single prime number, so for each check I add another prime to my array of possible primes. When the quotient is 1, I stop. </p>
+      <p>I was the 242960th person to solve this! <strong>Excelsior!</strong></p>
+      <code>
+        var limit = 600851475143;
+        var primes = [2];
+        var primeFactors = [];
+        var quotient = limit;
+        do
+        {
+
+        //we actually need to check every prime
+        console.log("quotient is " + quotient);
+        console.log(primes);
+        console.log(primeFactors);
+        for (var primeIndex in primes)
+        {
+        if (quotient % primes[primeIndex] == 0)
+        {
+        primeFactors.push(primes[primeIndex]);
+        quotient = quotient/primes[primeIndex];
+        console.log(quotient + " divided by " + primes[primeIndex] + " is " + primes[primeIndex]);
+        }
+        }
+        //we're going to start adding a new prime to the list
+        var addPrime = true;
+        var nextNumber = primes[primes.length -1] + 1;
+
+        //Adding another prime to the list of primes for use in figuring out the prime factors
+        do
+        {
+        addPrime = true;
+        for (var index in primes)
+        {
+        var prime = primes[index];
+        //if this next nextNumber can not be divided
+        if (nextNumber % prime == 0)
+        {
+        addPrime = false;
+        }
+        }
+        //If we didn't find that this number could be divided by any of our primes, we know it's a prime, so add it to the list
+        if (addPrime)
+        {
+        addPrime = true;
+        primes.push(nextNumber);
+        break;
+        }
+        //if we made it this far, add another 1 to it and let's keep looking
+        nextNumber++;
+        } while (!addPrime);
+        //when quotient is one stop
+        } while (quotient > 1);
+        console.log(primes);
+        console.log(primeFactors);
+        console.log("The prime factors of 600851475143 are " + primeFactors);
+      </code>
+      <script type="text/javascript">
+        var limit = 600851475143;
+        var primes = [2];
+        var primeFactors = [];
+        var quotient = limit;
+        do
+        {
+
+          //we actually need to check every prime
+          console.log("quotient is " + quotient);
+          console.log(primes);
+          console.log(primeFactors);
+          for (var primeIndex in primes)
+          {
+            if (quotient % primes[primeIndex] == 0)
+            {
+              primeFactors.push(primes[primeIndex]);
+              quotient = quotient/primes[primeIndex];
+              console.log(quotient + " divided by " + primes[primeIndex] + " is " + primes[primeIndex]);
+            }
+          }
+          //we're going to start adding a new prime to the list
+          var addPrime = true;
+          var nextNumber = primes[primes.length -1] + 1;
+
+          //Adding another prime to the list of primes for use in figuring out the prime factors
+          do
+          {
+            addPrime = true;
+            for (var index in primes)
+            {
+              var prime = primes[index];
+              //if this next nextNumber can not be divided
+              if (nextNumber % prime == 0)
+              {
+                addPrime = false;
+              }
+            }
+            //If we didn't find that this number could be divided by any of our primes, we know it's a prime, so add it to the list
+            if (addPrime)
+            {
+              addPrime = true;
+              primes.push(nextNumber);
+              break;
+            }
+            //if we made it this far, add another 1 to it and let's keep looking
+            nextNumber++;
+          } while (!addPrime);
+          //when quotient is one stop
+        } while (quotient > 1);
+        console.log(primes);
+        console.log(primeFactors);
+        console.log("The prime factors of 600851475143 are " + primeFactors);
+      </script>
+      <h3 class="problem-title">Problem 4</h3>
+      <script>
+
+      </script>
+    </main>
+
+    <!-- build:js scripts/main.min.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- Built with love using Web Starter Kit -->
+  </body>
+</html>
